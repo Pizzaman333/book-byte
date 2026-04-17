@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/book-byte/static/css/main.7d870548.css",
-    "main.js": "/book-byte/static/js/main.50d32564.js",
+    "main.js": "/book-byte/static/js/main.abfb1736.js",
     "static/css/690.f7221b5c.chunk.css": "/book-byte/static/css/690.f7221b5c.chunk.css",
     "static/js/690.24071c0e.chunk.js": "/book-byte/static/js/690.24071c0e.chunk.js",
     "home-view.css": "/book-byte/static/css/home-view.0460e660.chunk.css",
@@ -13,7 +13,7 @@
     "404-view.js": "/book-byte/static/js/404-view.6c444a4d.chunk.js",
     "index.html": "/book-byte/index.html",
     "main.7d870548.css.map": "/book-byte/static/css/main.7d870548.css.map",
-    "main.50d32564.js.map": "/book-byte/static/js/main.50d32564.js.map",
+    "main.abfb1736.js.map": "/book-byte/static/js/main.abfb1736.js.map",
     "690.f7221b5c.chunk.css.map": "/book-byte/static/css/690.f7221b5c.chunk.css.map",
     "690.24071c0e.chunk.js.map": "/book-byte/static/js/690.24071c0e.chunk.js.map",
     "home-view.0460e660.chunk.css.map": "/book-byte/static/css/home-view.0460e660.chunk.css.map",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.7d870548.css",
-    "static/js/main.50d32564.js"
+    "static/js/main.abfb1736.js"
   ]
 }
