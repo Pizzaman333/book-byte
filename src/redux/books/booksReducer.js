@@ -1,4 +1,4 @@
-import { createReducer, combineReducers, createSlice } from '@reduxjs/toolkit';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import { fetchBooks } from './booksOperations';
 
 const entities = createReducer([], {

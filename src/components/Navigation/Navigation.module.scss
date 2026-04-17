@@ -1,0 +1,26 @@
+$primary-color: #2c3e50;
+$accent-color: #3498db;
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  padding: 1.2rem 0;
+
+  .link {
+    text-decoration: none;
+    color: $primary-color;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+    padding-bottom: 0.2rem;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
+  .activeLink {
+    color: $accent-color;
+    border-bottom: 2px solid $accent-color;
+  }
+}

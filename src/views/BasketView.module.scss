@@ -1,0 +1,187 @@
+$text-dark: #2d3748;
+$text-light: #718096;
+$border-color: #e2e8f0;
+$danger-red: #e53e3e;
+$success-green: #38a169;
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+}
+
+.cartItem {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 650px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+}
+
+.checkoutSection {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 3rem;
+  gap: 1.5rem;
+}
+
+.wrapper {
+  padding-bottom: 4rem;
+}
+
+.emptyState {
+  color: $text-light;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+.itemInfo {
+  flex: 1;
+  
+  h3 {
+    margin: 0 0 0.5rem 0;
+    color: $text-dark;
+  }
+  
+  p {
+    margin: 0;
+    color: $text-light;
+  }
+}
+
+.controlsWrapper {
+  display: flex;
+  align-items: center;
+  
+  @media (max-width: 650px) {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: 3rem;
+
+  @media (max-width: 650px) {
+    margin-right: 0;
+  }
+
+  button {
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid $border-color;
+    background: #f8f9fa;
+    font-size: 1.1rem;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #edf2f7;
+    }
+  }
+
+  span {
+    font-weight: bold;
+    min-width: 24px;
+    text-align: center;
+    color: $text-dark;
+  }
+}
+
+.priceAndRemove {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 150px;
+  justify-content: flex-end;
+
+  strong {
+    font-size: 1.2rem;
+    color: $text-dark;
+  }
+
+  .removeBtn {
+    background: $danger-red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: darken($danger-red, 10%);
+    }
+  }
+}
+
+.checkoutSection {
+
+  h2 {
+    margin: 0;
+    color: $text-dark;
+    font-size: 1.8rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+
+    .clearBtn {
+      padding: 0.75rem 1.5rem;
+      background: #edf2f7;
+      color: $text-dark;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #e2e8f0;
+      }
+    }
+
+    .checkoutBtn {
+      padding: 0.75rem 2rem;
+      background: $success-green;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: background 0.2s ease, transform 0.1s ease;
+
+      &:hover {
+        background: darken($success-green, 5%);
+      }
+      
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as bookShelfAPI from 'services/bookshelf-api';
+import * as bookShelfAPI from '../../services/bookshelf-api';
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',

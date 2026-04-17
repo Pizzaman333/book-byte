@@ -1,5 +1,5 @@
-import styles from './PageHeading.module.css';
+import styles from './PageHeading.module.scss';
 
 export default function PageHeading({ text }) {
-  return <h1 className={styles.title}>{text}</h1>;
+  return <div className={styles.headerChunk}><h1 className={styles.title}>{text}</h1></div>;
 }

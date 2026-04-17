@@ -1,0 +1,157 @@
+$text-dark: #2d3748;
+$text-light: #718096;
+$accent-blue: #3182ce;
+$success-green: #38a169;
+
+.wrapper {
+  padding-bottom: 4rem;
+}
+
+.topControls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  color: $text-dark;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateX(-4px);
+    color: $accent-blue;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.headerChunk {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contentChunk {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 3rem;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+.detailsContainer {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .image {
+    max-width: 320px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+
+    p {
+      margin: 0;
+      color: $text-dark;
+      font-size: 1.1rem;
+    }
+
+    strong {
+      color: #1a202c;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: $success-green;
+      margin: 0.5rem 0;
+    }
+
+    .description {
+      margin-top: 1rem;
+      line-height: 1.8;
+      color: $text-light;
+      font-size: 1.1rem;
+    }
+
+    .inStock {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background-color: #c6f6d5;
+      color: #22543d;
+      font-weight: 700;
+      font-size: 0.95rem;
+      width: fit-content;
+    }
+
+    .outOfStock {
+      @extend .inStock;
+      background-color: #fed7d7;
+      color: #742a2a;
+    }
+
+    .addBtn {
+      margin-top: 1.5rem;
+      padding: 1rem 2rem;
+      background: $accent-blue;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+      width: fit-content;
+
+      &:hover {
+        background: darken($accent-blue, 10%);
+      }
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+
+    .disabledBtn {
+      @extend .addBtn;
+      background: #e2e8f0;
+      color: #a0aec0;
+      cursor: not-allowed;
+
+      &:hover {
+        background: #e2e8f0;
+      }
+      &:active {
+        transform: none;
+      }
+    }
+  }
+}

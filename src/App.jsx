@@ -1,38 +1,46 @@
-import { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import AppBar from './components/AppBar/AppBar';
-import Container from './components/Container/Container';
+import { lazy, Suspense, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import AppBar from "./components/AppBar/AppBar";
+import Container from "./components/Container/Container";
+import { fetchCart } from './redux/cart/cartSlice';
+import styles from './App.module.scss';
+
+const BasketView = lazy(() => import("./views/BasketView.jsx"));
 
 const HomeView = lazy(() =>
-  import('./views/HomeView.js' /* webpackChunkName: "home-view" */),
+  import("./views/HomeView.jsx" /* webpackChunkName: "home-view" */),
 );
-// const AuthorsView = lazy(() =>
-//   import('./views/AuthorsView.js' /* webpackChunkName: "authors-view" */),
-// );
 const BooksView = lazy(() =>
-  import('./views/BooksView.js' /* webpackChunkName: "books-view" */),
+  import("./views/BooksView.jsx" /* webpackChunkName: "books-view" */),
 );
 const BookDetailsView = lazy(() =>
-  import('./views/BookDetailsView.js' /* webpackChunkName: "book-view" */),
+  import("./views/BookDetailsView.jsx" /* webpackChunkName: "book-view" */),
 );
 const NotFoundView = lazy(() =>
-  import('./views/NotFoundView.js' /* webpackChunkName: "404-view" */),
+  import("./views/NotFoundView.jsx" /* webpackChunkName: "404-view" */),
 );
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, [dispatch]);
+
   return (
-    <Container>
+    <>
+      <div className={styles.animatedBg}></div>
+    
+     <Container>
+
       <AppBar />
 
-      <Suspense fallback={<h1>ЗАГРУЖАЄМО МАРШРУТ...</h1>}>
+      <Suspense fallback={<h2>LOADING ROUTE...</h2>}>
         <Switch>
           <Route path="/" exact>
             <HomeView />
           </Route>
-
-          {/* <Route path="/authors">
-            <AuthorsView />
-          </Route> */}
 
           <Route path="/books" exact>
             <BooksView />
@@ -42,11 +50,16 @@ export default function App() {
             <BookDetailsView />
           </Route>
 
+          <Route path="/basket" exact>
+            <BasketView />
+          </Route>
+
           <Route>
             <NotFoundView />
           </Route>
         </Switch>
       </Suspense>
     </Container>
+    </>
   );
 }
