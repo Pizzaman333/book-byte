@@ -1,24 +1,49 @@
 import { createSelector } from 'reselect';
+import { selectBookEntities } from '../books/booksSlice';
 
-export const selectCartItems = (state) => state.cart.items;
+export const selectCartItemIds = (state) => state.cart.itemIds;
+export const selectCartQuantitiesById = (state) => state.cart.quantitiesById;
 export const selectIsCartLoading = (state) => state.cart.isLoading;
+export const selectCartError = (state) => state.cart.error;
 
-export const selectCartItemCount = createSelector([selectCartItems], (items) =>
-  items.reduce((total, item) => total + item.quantity, 0)
+export const selectCartItems = createSelector(
+  [selectCartItemIds, selectCartQuantitiesById],
+  (itemIds, quantitiesById) =>
+    itemIds.map((id) => ({
+      id,
+      quantity: quantitiesById[id],
+    })),
 );
 
-export const selectCartSubtotal = createSelector([selectCartItems], (items) =>
-  items.reduce((total, item) => total + item.price * item.quantity, 0)
+export const selectCartItemCount = createSelector([selectCartItems], (items) =>
+  items.reduce((total, item) => total + item.quantity, 0),
+);
+
+export const selectCartLineItems = createSelector(
+  [selectCartItems, selectBookEntities],
+  (items, booksById) =>
+    items.reduce((lineItems, item) => {
+      const book = booksById[item.id];
+
+      if (!book) {
+        return lineItems;
+      }
+
+      lineItems.push({
+        ...book,
+        quantity: item.quantity,
+        lineTotal: book.price * item.quantity,
+      });
+
+      return lineItems;
+    }, []),
+);
+
+export const selectCartSubtotal = createSelector([selectCartLineItems], (items) =>
+  items.reduce((total, item) => total + item.lineTotal, 0),
 );
 
 export const selectCartHasItems = createSelector(
-  [selectCartItems],
-  (items) => items.length > 0
-);
-
-export const selectCartLineItems = createSelector([selectCartItems], (items) =>
-  items.map((item) => ({
-    ...item,
-    lineTotal: item.price * item.quantity,
-  }))
+  [selectCartItemIds],
+  (itemIds) => itemIds.length > 0,
 );

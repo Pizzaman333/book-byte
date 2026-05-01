@@ -1,21 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cart/cartSlice'; 
+import {
+  fetchBookById,
+  selectBookById,
+  selectIsBooksLoading,
+} from '../redux/books/booksSlice';
 import PageHeading from '../components/PageHeading/PageHeading';
-import * as bookShelfAPI from '../services/bookshelf-api';
 import styles from './BookDetailsView.module.scss';
 
 export default function BookDetailsView() {
   const location = useLocation();
   const { slug } = useParams();
   const bookId = slug.match(/[a-z0-9]+$/)[0];
-  const [book, setBook] = useState(null);
   const dispatch = useDispatch();
+  const book = useSelector((state) => selectBookById(state, bookId));
+  const isLoading = useSelector(selectIsBooksLoading);
 
   useEffect(() => {
-    bookShelfAPI.fetchBookById(bookId).then(setBook);
-  }, [bookId]);
+    if (!book) {
+      dispatch(fetchBookById(bookId));
+    }
+  }, [book, bookId, dispatch]);
 
   const handleAddToCart = () => {
     dispatch(addToCart(book));
@@ -23,7 +30,7 @@ export default function BookDetailsView() {
 
   return (
     <div className={styles.wrapper}>
-      {book && (
+      {book ? (
         <>
           {/* Top Controls: Back Button & Title */}
           <div className={styles.topControls}>
@@ -61,6 +68,8 @@ export default function BookDetailsView() {
             </div>
           </div>
         </>
+      ) : (
+        !isLoading && <PageHeading text="Book not found" />
       )}
     </div>
   );
