@@ -24,6 +24,19 @@
   }
 }
 
+.sessionLoader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  color: #1f2937;
+  font-weight: 700;
+}
+
 @keyframes panImage {
   0% {
     background-position: 0% 50%;
